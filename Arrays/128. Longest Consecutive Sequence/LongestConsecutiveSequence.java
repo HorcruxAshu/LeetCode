@@ -1,18 +1,27 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
-        //Brute force: Sort the array and count consecutive numbers by skipping the duplicates.
-        Arrays.sort(nums);
-        int maxLen = 0;
-        int count = 0;
-        for(int i = 0; i < nums.length; i++){
-            if( (i + 1 < nums.length)  && (nums[i] == nums[i + 1]))continue;
-            if((i + 1 < nums.length) && (nums[i + 1] == nums[i] + 1)){
-                count++;
-            }else{
-                maxLen = Math.max(count + 1, maxLen);
-                count = 0;
-            }
+        //Brute force: Sort the array and count consecutive numbers by skipping the duplicates. SC: O(1) TC: O(nlogn) + O(n)
+        
+        //Optimal: To use HashSet to store all numbers and then linearly iterate over the arr to check if num - 1 exits if it doesn't we start iterating towards num + 1 to check if that lies in the HashSet alongside we also keep a track of longestConsecutive;
+        //SC: O(n)
+        //TC: O(3n)
+        HashSet<Integer> set = new HashSet<>();
+        for(int num: nums){
+            set.add(num);
         }
-        return maxLen;
+        int longestStreak = 0;
+        for(int num : nums){
+            if(!(set.contains(num - 1))){
+                int currentNum = num;
+                int currentStreak = 1;
+                while(set.contains(currentNum + 1)){
+                    currentNum += 1;
+                    currentStreak += 1;
+                }
+                longestStreak = Math.max(longestStreak, currentStreak);
+            }
+            
+        }
+        return longestStreak;
     }
 }
