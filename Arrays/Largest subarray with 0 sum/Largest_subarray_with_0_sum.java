@@ -34,18 +34,26 @@ class GfG
         // Your code here
         //Brute Force: O(N^2) two loop checking if the sum is 0, then calculating the sum of the subarray
         //the maxLen
-        if(arr.length == 1){
-            if(arr[0] == 0) return 1;
-        }
+        
+        
+        //Optimal: Keep a prefixSum, and HashMap where you keep arr[i], i as k,v. If the current prefixSum exists in the HashMap then that means if A + B = C  and A + D = c then D - B = 0 thus keeping the maxLen var
+        int prefixSum = 0;
         int maxLen = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < arr.length; i++){
-           int sumSofar = arr[i];
-           for(int j = i + 1; j < arr.length; j++){
-               sumSofar += arr[j];
-               if(sumSofar == 0){
-                   maxLen = Math.max(maxLen, (j - i + 1));
-               }
-           }
+            prefixSum += arr[i];
+            if(prefixSum == 0){
+                maxLen = i + 1;
+            }else{
+                if(!(map.containsKey(prefixSum))){
+                    map.put(prefixSum, i);
+                }
+                if(map.containsKey(prefixSum)){
+                    int firstOccurance = map.get(prefixSum);
+                    int diff = i - firstOccurance;
+                    maxLen = Math.max(maxLen, diff);
+                }
+            }    
         }
         return maxLen;
     }
