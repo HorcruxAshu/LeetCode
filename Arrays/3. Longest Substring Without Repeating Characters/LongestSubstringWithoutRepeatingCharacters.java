@@ -1,4 +1,5 @@
-//Approach is to set two counters (a, b) where if a same character is found increment a, else b
+//Approach is to set two counters (a, b) where if a same character is found increment a, else b.
+//Intuition is to keep a track a of distinct characters while travelling over the string
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
