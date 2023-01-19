@@ -25,7 +25,6 @@ class Solution {
                 list1 = list1.next;
             }
             tempNode.next = list2;
-            
             ListNode swapNode = list1;
             list1 = list2;
             list2 = swapNode;
