@@ -38,6 +38,7 @@ public class Solution {
             runA = runA.next;
             runB = runB.next;
         }
+        
         // System.out.println(sizeA + " " + sizeB+ " " + runA.val + " " + runB.val);
         return null;
     }
