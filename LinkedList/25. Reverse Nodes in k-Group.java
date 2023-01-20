@@ -17,7 +17,6 @@ class Solution {
             sizeNode = sizeNode.next;
             size++;
         }
-        int groups = size / k;
         
         
         //Assigning dummyNode, and keeping a track of current, previous and nextNode.
