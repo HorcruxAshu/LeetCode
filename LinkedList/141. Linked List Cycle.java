@@ -10,16 +10,16 @@ class ListNode {
 class Solution {
 
     // T.C = O(n)
-    //S.C = O(n)
+    //S.C = O(1)
     public boolean hasCycle(ListNode head) {
-        if(head == null) return false;
-        ListNode tempNode = head;
-        Set<ListNode> set = new HashSet<>();
-        while(tempNode != null){
-            if(set.contains(tempNode)) return true;
-            set.add(tempNode);
-            tempNode = tempNode.next;
+        ListNode slowPointer = head;
+        ListNode fastPointer = head;
+        
+        while(fastPointer != null && fastPointer.next != null ){
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+            if(slowPointer == fastPointer) return true;
         }
-        return false;        
+        return false;      
     }
 }
