@@ -23,6 +23,7 @@ class Solution {
         }
         
         //super important step is to assign the next of size - kth node as a head and the cut the link;
+        //pointing head as the next of the last kth node that is next of the size - kth
         head = tempNode.next;
         tempNode.next = null;
         
